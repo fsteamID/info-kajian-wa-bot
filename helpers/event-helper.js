@@ -31,7 +31,8 @@ const validateTodayEvent = function(content) {
   const month = date.format('MMMM');
   const day = date.date();
 
-  const arr = content.split(' ');
+  // Split on any whitespace (including newlines)
+  const arr = content.trim().split(/\s+/);
 
   // Finding the year
   const yearIndex = arr.findIndex(s => s == year);
