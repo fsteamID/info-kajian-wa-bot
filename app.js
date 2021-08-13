@@ -101,7 +101,7 @@ dayjs.locale('id');
     // This is a group message
     if (m.key.remoteJid.endsWith('@g.us')) {
       try {
-        group = await whatsapp.groupMetadata(m.key.remoteJid);
+        group = await whatsapp.fetchGroupMetadataFromWA(m.key.remoteJid);
       } catch (err) {
         console.log('Error getting group info:', err);
       }
@@ -126,8 +126,6 @@ dayjs.locale('id');
           m.key.fromMe
         )
       ) {
-        console.log('New event added.');
-
         // Special check for SAHABAT UMMAT III
         // Validating the date
         if (group.subject.toUpperCase() == 'SAHABAT UMMAT III') {
@@ -143,6 +141,8 @@ dayjs.locale('id');
 
         // Store the event to file
         addNewEvent(event);
+
+        console.log('New event added.');
 
         // Sending to all subscribers
         sendTodayEvents(null, event);
