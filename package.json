@@ -1,0 +1,37 @@
+{
+  "name": "info-kajian-wa-bot",
+  "version": "1.0.0",
+  "description": "Whatsapp bot to send info kajian (forwarder)",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngekoding/info-kajian-wa-bot.git"
+  },
+  "keywords": [
+    "info",
+    "kajian",
+    "whatsapp",
+    "bot",
+    "whatsapp",
+    "api"
+  ],
+  "author": "Nur Muhammad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ngekoding/info-kajian-wa-bot/issues"
+  },
+  "homepage": "https://github.com/ngekoding/info-kajian-wa-bot#readme",
+  "dependencies": {
+    "@adiwajshing/baileys": "^3.5.2",
+    "dayjs": "^1.10.6",
+    "fs-extra": "^10.0.0",
+    "mime-types": "^2.1.32"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
