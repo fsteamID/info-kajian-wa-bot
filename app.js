@@ -19,6 +19,10 @@ const {
 require('dayjs/locale/id');
 dayjs.locale('id');
 
+// All event that posted by allowed sender 
+// on Info Kajian - Extra group will be saved
+const allowedSenders = ['6287864423038@s.whatsapp.net'];
+
 (async() => {
   const whatsapp = new WAConnection();
   
@@ -91,7 +95,7 @@ dayjs.locale('id');
 
     const m = chat.messages.all()[0];
     const messageContent = m.message;
-    
+
     // If it is not a regular text or media message
     if (!messageContent) return;
 
@@ -108,7 +112,8 @@ dayjs.locale('id');
     }
 
     const messageType = Object.keys(messageContent)[0];
-
+    const isAllowedExtra = m.key.participant && allowedSenders.includes(m.key.participant);
+    
     if (messageType === MessageType.text) {
       const text = m.message.conversation;
 
@@ -123,7 +128,7 @@ dayjs.locale('id');
         (
           group &&
           group.subject.toUpperCase() == 'INFO KAJIAN - EXTRA' && 
-          m.key.fromMe
+          (m.key.fromMe || isAllowedExtra)
         )
       ) {
         // Special check for SAHABAT UMMAT III
@@ -182,7 +187,7 @@ dayjs.locale('id');
       messageType === MessageType.image &&
       group &&
       group.subject.toUpperCase() == 'INFO KAJIAN - EXTRA' && 
-      m.key.fromMe
+      (m.key.fromMe || isAllowedExtra)
     ) {
       try {
         // Problem with downloading own message
